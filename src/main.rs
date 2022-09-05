@@ -1,3 +1,4 @@
+#![feature(proc_macro_hygiene, decl_macro)]
 
 #[macro_use] extern crate rocket;
 
@@ -11,7 +12,6 @@ fn about() -> &'static str {
     "This website does absolutely nothing important."
 }
 
-#[launch]
-fn rocket() -> _ {
-    rocket::build().mount("/", routes![index, about])
+fn main() {
+    rocket::ignite().mount("/", routes![index, about]).launch();
 }
